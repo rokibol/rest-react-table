@@ -64,7 +64,6 @@ function ReactTable(props) {
         }
 
         return (
-                
                 <Table striped bordered hover size="sm">
                         <thead>
                                 <tr>
