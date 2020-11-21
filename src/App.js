@@ -9,20 +9,30 @@ function App() {
   const initializeTableData = [{"id":0,"name":"","contact":""}];
   const [table_data, SetTableData] = useState(initializeTableData);
   const [TotalData] = useState(100);
-  const [DataPerPage] = useState(20);
+  const [PerPageData] = useState(5);
   useEffect(() => {
       var data = [];
-      for(var i = 0; i < TotalData; i++)
+      for(var i = 0; i < PerPageData; i++)
+      {
+          data.push({"id":i, "name":""+i, "contact":"Contact " +i});
+      }
+      SetTableData(data);
+  },[])
+
+  function LoadData(start, limit) {
+      var data = [];
+      for(var i = start; i < (start+limit); i++)
       {
         data.push({"id":i,"name":""+i,"contact":"Contact " +i});
       }
-      SetTableData(data);
-  },[]);
+      return data;
+  }
+
   return (
     <Container fluid>
         <Row>
             <Col md={12} className="text-center">
-                <ReactTable Data={table_data} TotalData={TotalData} DataPerPage={DataPerPage}/>
+                <ReactTable Data={table_data} TotalData={TotalData} DataPerPage={PerPageData} DataLoadCallback={LoadData}/>
             </Col>
         </Row>
     </Container>
