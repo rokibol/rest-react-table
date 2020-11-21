@@ -10,6 +10,22 @@ function App() {
   const [table_data, SetTableData] = useState(initializeTableData);
   const [TotalData] = useState(100);
   const [PerPageData] = useState(5);
+
+  var columns = [
+      {
+        "Name":"ID",
+        "ValueMember":"id"
+      },
+      {
+        "Name":"Name",
+        "ValueMember":"name"
+      },
+      {
+        "Name":"Contact",
+        "ValueMember":"contact"
+      }
+  ];
+
   useEffect(() => {
       var data = [];
       for(var i = 0; i < PerPageData; i++)
@@ -32,7 +48,7 @@ function App() {
     <Container fluid>
         <Row>
             <Col md={12} className="text-center">
-                <ReactTable Data={table_data} TotalData={TotalData} DataPerPage={PerPageData} DataLoadCallback={LoadData}/>
+                <ReactTable Data={table_data} Columns={columns} TotalData={TotalData} DataPerPage={PerPageData} DataLoadCallback={LoadData}/>
             </Col>
         </Row>
     </Container>

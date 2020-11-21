@@ -67,20 +67,22 @@ function ReactTable(props) {
                 <Table striped bordered hover size="sm">
                         <thead>
                                 <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Contact</th>
-                                        <th>Action</th>
+                                        {
+                                                props.Columns.map(function(name, index){
+                                                        return <th key={index}>{name.Name}</th>
+                                                })
+                                        }
                                 </tr>
                         </thead>
                         <tbody>
                                 {
                                         pageData.map(function(name, index){
                                         return <tr key={index}>
-                                                        <td>{index}</td>
-                                                        <td>{name.name}</td>
-                                                        <td>{name.contact}</td>
-                                                        <td><Button varient="primary">Edit</Button></td>
+                                                {
+                                                        props.Columns.map(function(colName, col_index){
+                                                                return <td key={col_index}>{name[colName["ValueMember"]]}</td>
+                                                        })
+                                                }
                                                 </tr>;
                                 })}
                         </tbody>
